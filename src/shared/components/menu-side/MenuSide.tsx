@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Avatar,
   Divider,
   Drawer,
   Icon,
@@ -13,6 +12,7 @@ import {
 } from "@mui/material";
 import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import { Box } from "@mui/system";
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import {
   useAppThemeContext,
@@ -73,24 +73,11 @@ export const MenuSide: React.FC<IMenuLateralProps> = ({ children }) => {
         onClose={toggleDrawerOpen}
       >
         <Box
-          width={theme.spacing(28)}
+          width={theme.spacing(8)}
           height="100%"
           display="flex"
           flexDirection="column"
         >
-          <Box
-            width="100%"
-            height={theme.spacing(20)}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Avatar
-              sx={{ height: theme.spacing(12), width: theme.spacing(12) }}
-              src="https://pic.onlinewebfonts.com/svg/img_568656.png"
-            />
-          </Box>
-
           <Divider />
 
           <Box flex={1}>
@@ -109,17 +96,8 @@ export const MenuSide: React.FC<IMenuLateralProps> = ({ children }) => {
 
           <Box>
             <List component="nav">
-              <ListItemButton onClick={toggleTheme}>
-                <ListItemIcon>
-                  <Icon>dark_mode</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Alternar tema" />
-              </ListItemButton>
               <ListItemButton onClick={logout}>
-                <ListItemIcon>
-                  <Icon>logout</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Sair" />
+                <SettingsIcon />
               </ListItemButton>
             </List>
           </Box>
