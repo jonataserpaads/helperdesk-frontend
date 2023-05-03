@@ -1,12 +1,10 @@
 import React from "react";
 import {
-  Divider,
   Drawer,
   Icon,
   List,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
   useMediaQuery,
   useTheme,
 } from "@mui/material";

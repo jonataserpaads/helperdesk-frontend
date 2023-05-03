@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { LayoutBasePage } from "../../../shared/layouts";
 import { useSearchParams } from "react-router-dom";
-import { Box, Paper, TableContainer } from "@mui/material";
+import { Paper, TableContainer } from "@mui/material";
 
 export const ListContacts: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
