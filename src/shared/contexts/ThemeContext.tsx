@@ -2,7 +2,6 @@ import React from "react";
 import {
   createContext,
   useCallback,
-  useContext,
   useMemo,
   useState,
 } from "react";
@@ -17,10 +16,6 @@ interface IThemeContextData {
 }
 
 const ThemeContext = createContext({} as IThemeContextData);
-
-export const useAppThemeContext = () => {
-  return useContext(ThemeContext);
-};
 
 interface IAppThemeProps {
   children: React.ReactNode;
@@ -45,7 +40,6 @@ export const AppThemeProvider: React.FC<IAppThemeProps> = ({ children }) => {
     <ThemeContext.Provider value={{ themeName, toggleTheme }}>
       <ThemeProvider theme={theme}>
         <Box
-          width="100vw"
           height="100vh"
           bgcolor={theme.palette.background.default}
         >

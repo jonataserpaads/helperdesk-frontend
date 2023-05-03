@@ -15,7 +15,7 @@ import { Box } from "@mui/system";
 import SettingsIcon from '@mui/icons-material/Settings';
 
 import {
-  useAppThemeContext,
+  IDrawerOption,
   useAuthContext,
   useDrawerContext,
 } from "../../contexts";
@@ -23,14 +23,13 @@ import {
 interface IListItemLinkProps {
   to: string;
   icon: string;
-  label: string;
+  label?: string;
   onClick: (() => void) | undefined;
 }
 
 const ListItemLink: React.FC<IListItemLinkProps> = ({
   to,
   icon,
-  label,
   onClick,
 }) => {
   const navigate = useNavigate();
@@ -44,11 +43,10 @@ const ListItemLink: React.FC<IListItemLinkProps> = ({
   };
 
   return (
-    <ListItemButton selected={!!match} onClick={handleClick}>
+    <ListItemButton style={{ marginTop: 20 }} selected={!!match} onClick={handleClick}>
       <ListItemIcon>
         <Icon>{icon}</Icon>
       </ListItemIcon>
-      <ListItemText primary={label} />
     </ListItemButton>
   );
 };
@@ -62,7 +60,6 @@ export const MenuSide: React.FC<IMenuLateralProps> = ({ children }) => {
   const smDown = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { isDrawerOpen, drawerOptions, toggleDrawerOpen } = useDrawerContext();
-  const { toggleTheme } = useAppThemeContext();
   const { logout } = useAuthContext();
 
   return (
@@ -77,17 +74,15 @@ export const MenuSide: React.FC<IMenuLateralProps> = ({ children }) => {
           height="100%"
           display="flex"
           flexDirection="column"
+          style={{ backgroundColor: '#4285F4', overflow: 'hidden' }}
         >
-          <Divider />
-
           <Box flex={1}>
             <List component="nav">
-              {drawerOptions.map((drawerOption) => (
+              {drawerOptions.map((drawerOption: IDrawerOption) => (
                 <ListItemLink
                   to={drawerOption.path}
                   key={drawerOption.path}
                   icon={drawerOption.icon}
-                  label={drawerOption.label}
                   onClick={smDown ? toggleDrawerOpen : undefined}
                 />
               ))}
@@ -104,7 +99,7 @@ export const MenuSide: React.FC<IMenuLateralProps> = ({ children }) => {
         </Box>
       </Drawer>
 
-      <Box height="100vh" marginLeft={smDown ? 0 : theme.spacing(28)}>
+      <Box height="100vh" marginLeft={smDown ? 0 : theme.spacing(10)}>
         {children}
       </Box>
     </>

@@ -1,10 +1,11 @@
 import React from "react";
 import { createContext, useCallback, useContext, useState } from "react";
-import StoreIcon from "@mui/icons-material/Store";
 import DescriptionIcon from '@mui/icons-material/Description';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import PersonIcon from '@mui/icons-material/Person';
+import logo from '../../assets/logo.png';
 
-interface IDrawerOption {
+export interface IDrawerOption {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any;
   path: string;
@@ -13,14 +14,19 @@ interface IDrawerOption {
 
 const routes: IDrawerOption[] = [
   {
-    icon: "",
-    path: "/HOME",
+    icon: <img src={logo} alt="logo" />,
+    path: "/home",
     label: "ADS",
   },
   {
     icon: <DescriptionIcon />,
     path: "/ticket",
     label: "Ticket",
+  },
+  {
+    icon: <PersonIcon />,
+    path: "/contacts",
+    label: "Contact",
   },
   {
     icon: <WhatsAppIcon />,
