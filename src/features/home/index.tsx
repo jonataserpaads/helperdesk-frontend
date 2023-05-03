@@ -1,7 +1,12 @@
-
+import { LayoutBasePage } from "../../shared/layouts";
 
 export const Home = () => {
-    return (
-        <p>Home</p>
-    )
-}
+  return (
+    <LayoutBasePage
+      title="Home"
+      placeholder="Pesquisar..."
+
+    >
+    </LayoutBasePage>
+  );
+};

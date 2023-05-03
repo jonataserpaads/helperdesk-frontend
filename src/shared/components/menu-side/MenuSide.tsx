@@ -99,7 +99,7 @@ export const MenuSide: React.FC<IMenuLateralProps> = ({ children }) => {
         </Box>
       </Drawer>
 
-      <Box height="100vh" marginLeft={smDown ? 0 : theme.spacing(10)}>
+      <Box height="100vh" marginLeft={smDown ? 0 : theme.spacing(6)}>
         {children}
       </Box>
     </>

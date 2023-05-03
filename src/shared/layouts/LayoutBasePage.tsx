@@ -1,8 +1,13 @@
 import React from "react";
 import { ReactNode } from "react";
 import {
+  Button,
   Icon,
   IconButton,
+  InputAdornment,
+  Paper,
+  Tabs,
+  TextField,
   Theme,
   Typography,
   useMediaQuery,
@@ -10,48 +15,74 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 
-import { useDrawerContext } from "../contexts";
+import NavTabs from "../components/tabs/NavTabs";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface ILayoutBasePageProps {
   title: string;
   toolBars?: ReactNode;
   children: React.ReactNode;
+  textSearch?: string;
+  placeholder?: string;
+  changeTextSearch?: (novoTexto: string) => void;
 }
 
 export const LayoutBasePage: React.FC<ILayoutBasePageProps> = ({
-  children,
   title,
+  children,
   toolBars,
+  textSearch,
+  placeholder,
+  changeTextSearch,
 }) => {
-  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
-  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
   const theme = useTheme();
 
-  const { toggleDrawerOpen } = useDrawerContext();
-
   return (
-    <Box height="100%" display="flex" flexDirection="column" gap={1}>
+    <Box height="100%" display="flex" flexDirection="column" gap={2}>
+      <NavTabs title={title} />
       <Box
+        gap={1}
+        marginX={1}
         padding={1}
+        paddingX={2}
         display="flex"
         alignItems="center"
-        gap={1}
-        height={theme.spacing(smDown ? 4 : mdDown ? 6 : 10)}
+        height={theme.spacing(5)}
+        component={Paper}
       >
-        {smDown && (
-          <IconButton onClick={toggleDrawerOpen}>
-            <Icon>menu</Icon>
-          </IconButton>
-        )}
-
         <Typography
           overflow="hidden"
           whiteSpace="nowrap"
           textOverflow="ellipses"
-          variant={smDown ? "h3" : mdDown ? "h3" : "h4"}
         >
           {title}
         </Typography>
+
+        <div
+          style={{
+            width: "648px",
+            height: "0px",
+            border: "1px solid #404252",
+            flex: "none",
+          }}
+        ></div>
+
+        <Box flex={1} display="flex" justifyContent="end">
+          <TextField
+            size="small"
+            fullWidth
+            value={textSearch}
+            placeholder={placeholder}
+            onChange={(e) => changeTextSearch?.(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
       </Box>
 
       {toolBars && <Box>{toolBars}</Box>}

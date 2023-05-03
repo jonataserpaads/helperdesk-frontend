@@ -1,5 +1,15 @@
 import React from "react";
-import { Box, Button, Icon, Paper, TextField, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Icon,
+  Paper,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+  Theme,
+} from "@mui/material";
 
 import { Environment } from "../../environment";
 
@@ -21,6 +31,8 @@ export const ToolList: React.FC<IToolListProps> = ({
   showButtonNew = true,
 }) => {
   const theme = useTheme();
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
 
   return (
     <Box
@@ -33,6 +45,15 @@ export const ToolList: React.FC<IToolListProps> = ({
       height={theme.spacing(5)}
       component={Paper}
     >
+      <Typography
+        overflow="hidden"
+        whiteSpace="nowrap"
+        textOverflow="ellipses"
+        variant={smDown ? "h6" : mdDown ? "h5" : "h4"}
+      >
+        Contatos
+      </Typography>
+
       {showInputSearch && (
         <TextField
           size="small"
