@@ -6,7 +6,7 @@ import {
   Button,
   Checkbox,
   FormControl,
-  Icon,
+  Grid,
   InputLabel,
   ListItemText,
   MenuItem,
@@ -136,6 +136,36 @@ export const ListContacts: React.FC = () => {
     }, 100);*/
   }
 
+  /**
+   * Select tag
+   */
+  function handleSelectTag() {
+    // sera usado futuramente
+    return (
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+        <Select
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
+          size="small"
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<OutlinedInput label="Tag" />}
+          renderValue={(selected) => selected.join(", ")}
+          MenuProps={MenuProps}
+        >
+          {tags.map((name) => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={personName.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    );
+  }
+
   return (
     <LayoutBasePage
       title="Contatos"
@@ -145,29 +175,7 @@ export const ListContacts: React.FC = () => {
         setSearchParams({ busca: texto, pagina: "0" }, { replace: true })
       }
     >
-      <Stack spacing={1} direction="row">
-        <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
-          <Select
-            labelId="demo-multiple-checkbox-label"
-            id="demo-multiple-checkbox"
-            size="small"
-            multiple
-            value={personName}
-            onChange={handleChange}
-            input={<OutlinedInput label="Tag" />}
-            renderValue={(selected) => selected.join(", ")}
-            MenuProps={MenuProps}
-          >
-            {tags.map((name) => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={personName.indexOf(name) > -1} />
-                <ListItemText primary={name} />
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
+      <Grid padding={3} marginTop={-3} container gap={1}>
         <Button
           variant="outlined"
           startIcon={<PublishIcon />}
@@ -234,53 +242,55 @@ export const ListContacts: React.FC = () => {
             </Typography>
           </Button>
         </Box>
-      </Stack>
 
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Nome</StyledTableCell>
-              <StyledTableCell>Celular</StyledTableCell>
-              <StyledTableCell>E-mail</StyledTableCell>
-              <StyledTableCell>Empresas</StyledTableCell>
-              <StyledTableCell>Data cadastro</StyledTableCell>
-              <StyledTableCell>Tag</StyledTableCell>
-            </TableRow>
-          </TableHead>
-
-          <TableBody>
-            <TableRows
-              rows={rows}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
-            />
-          </TableBody>
-
-          {totalCount === 0 && !isLoading && (
-            <caption>{Environment.LISTAGEM_VAZIA}</caption>
-          )}
-
-          <TableFooter>
-            {totalCount > 0 && totalCount > Environment.LIMITE_DE_LINHAS && (
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
               <TableRow>
-                <TableCell colSpan={6}>
-                  <Pagination
-                    page={pagina}
-                    count={Math.ceil(totalCount / Environment.LIMITE_DE_LINHAS)}
-                    onChange={(_, newPage) =>
-                      setSearchParams(
-                        { busca, pagina: newPage.toString() },
-                        { replace: true }
-                      )
-                    }
-                  />
-                </TableCell>
+                <StyledTableCell>Nome</StyledTableCell>
+                <StyledTableCell>Celular</StyledTableCell>
+                <StyledTableCell>E-mail</StyledTableCell>
+                <StyledTableCell>Empresas</StyledTableCell>
+                <StyledTableCell>Data cadastro</StyledTableCell>
+                <StyledTableCell>Tag</StyledTableCell>
               </TableRow>
+            </TableHead>
+
+            <TableBody>
+              <TableRows
+                rows={rows}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+              />
+            </TableBody>
+
+            {totalCount === 0 && !isLoading && (
+              <caption>{Environment.LISTAGEM_VAZIA}</caption>
             )}
-          </TableFooter>
-        </Table>
-      </TableContainer>
+
+            <TableFooter>
+              {totalCount > 0 && totalCount > Environment.LIMITE_DE_LINHAS && (
+                <TableRow>
+                  <TableCell colSpan={6}>
+                    <Pagination
+                      page={pagina}
+                      count={Math.ceil(
+                        totalCount / Environment.LIMITE_DE_LINHAS
+                      )}
+                      onChange={(_, newPage) =>
+                        setSearchParams(
+                          { busca, pagina: newPage.toString() },
+                          { replace: true }
+                        )
+                      }
+                    />
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      </Grid>
     </LayoutBasePage>
   );
 };

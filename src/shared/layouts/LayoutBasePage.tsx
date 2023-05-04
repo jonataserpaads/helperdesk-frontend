@@ -36,7 +36,7 @@ export const LayoutBasePage: React.FC<ILayoutBasePageProps> = ({
       <NavTabs title={title} />
       <Box
         gap={1}
-        marginX={1}
+        marginX={3}
         padding={1}
         paddingX={2}
         display="flex"
@@ -48,6 +48,14 @@ export const LayoutBasePage: React.FC<ILayoutBasePageProps> = ({
           overflow="hidden"
           whiteSpace="nowrap"
           textOverflow="ellipses"
+          style={{
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "600",
+            fontSize: "20px",
+            lineHeight: "28px",
+            color: "#404252",
+          }}
         >
           {title}
         </Typography>
