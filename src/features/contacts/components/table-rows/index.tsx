@@ -4,8 +4,8 @@ import {
   TableCell,
   TableRow,
 } from "@mui/material";
-import { IContactProps } from "../../../interfaces/IContactProps.interface";
-import NotDataTableRows from "../../../../../shared/components/table/not-data-table";
+import { IContactProps } from "../../interfaces/IContactProps.interface";
+import NotDataTableRows from "../../../../shared/components/table/not-data-table";
 
 export interface IRows {
   rows: IContactProps[];

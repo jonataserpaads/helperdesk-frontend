@@ -29,7 +29,7 @@ import { IContactProps } from "../interfaces/IContactProps.interface";
 import AddIcon from "@mui/icons-material/Add";
 import { Environment } from "../../../shared/environment";
 import PublishIcon from "@mui/icons-material/Publish";
-import TableRows from "./components/table-rows";
+import TableRows from "../components/table-rows";
 import styled from "styled-components";
 
 const StyledTableCell = styled(TableCell)({
