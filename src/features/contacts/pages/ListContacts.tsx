@@ -15,7 +15,6 @@ import {
   Paper,
   Select,
   SelectChangeEvent,
-  Stack,
   Table,
   TableBody,
   TableCell,
@@ -30,16 +29,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Environment } from "../../../shared/environment";
 import PublishIcon from "@mui/icons-material/Publish";
 import TableRows from "../components/table-rows";
-import styled from "styled-components";
-
-const StyledTableCell = styled(TableCell)({
-  fontFamily: "Inter",
-  fontStyle: "normal",
-  fontSize: "14px",
-  lineHeight: "20px",
-  fontWeight: "600",
-  color: "#777986",
-});
+import StyledTableCell from "../style";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -115,6 +105,7 @@ export const ListContacts: React.FC = () => {
 
   /**
    * Edit contact modal dialog
+   * @param contactValue
    */
   function handleEdit(contactValue: IContactProps) {
     setTitleModal("Edite Vaca");
@@ -247,12 +238,12 @@ export const ListContacts: React.FC = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <StyledTableCell>Nome</StyledTableCell>
-                <StyledTableCell>Celular</StyledTableCell>
-                <StyledTableCell>E-mail</StyledTableCell>
-                <StyledTableCell>Empresas</StyledTableCell>
-                <StyledTableCell>Data cadastro</StyledTableCell>
-                <StyledTableCell>Tag</StyledTableCell>
+                <StyledTableCell style={{width: '30%'}}>Nome</StyledTableCell>
+                <StyledTableCell style={{width: '15%'}}>Celular</StyledTableCell>
+                <StyledTableCell style={{width: '15%'}}>E-mail</StyledTableCell>
+                <StyledTableCell style={{width: '20%'}}>Empresas</StyledTableCell>
+                <StyledTableCell style={{width: '15%'}}>Data cadastro</StyledTableCell>
+                <StyledTableCell style={{width: '5%'}}></StyledTableCell>
               </TableRow>
             </TableHead>
 
