@@ -5,7 +5,6 @@ import {
   TableRow,
 } from "@mui/material";
 import { IContactProps } from "../../../interfaces/IContactProps.interface";
-import noData from "../../../../../assets/img-no-data.png";
 import NotDataTableRows from "../../../../../shared/components/table/not-data-table";
 
 export interface IRows {

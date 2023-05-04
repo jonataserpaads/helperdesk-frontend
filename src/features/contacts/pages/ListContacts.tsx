@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { LayoutBasePage } from "../../../shared/layouts";
 import { useSearchParams } from "react-router-dom";
 import {
+  Box,
   Button,
   Checkbox,
   FormControl,
@@ -176,7 +177,7 @@ export const ListContacts: React.FC = () => {
             alignItems: "center",
             padding: "12px",
             gap: "8px",
-            width: "171px",
+            width: "191px",
             height: "44px",
             background: "#FFFFFF",
             border: "1px solid #4285F4",
@@ -186,10 +187,8 @@ export const ListContacts: React.FC = () => {
           <Typography
             variant="button"
             whiteSpace="nowrap"
-            textOverflow="ellipsis"
             overflow="hidden"
             style={{
-              width: "119px",
               height: "20px",
               fontFamily: "Inter",
               fontStyle: "normal",
@@ -198,32 +197,43 @@ export const ListContacts: React.FC = () => {
               lineHeight: "20px",
               textAlign: "center",
               color: "#4285F4",
+              textTransform: "capitalize",
             }}
           >
             Importar contatos
           </Typography>
         </Button>
 
-        <Button variant="contained" color="primary" style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: '12px 16px',
-            gap: '8px',
-            width: '177px',
-            height: '44px',
-            background: '#4285F4',
-            borderRadius: '8px',
-        }} startIcon={<AddIcon />}>
-          <Typography
-            variant="button"
-            whiteSpace="nowrap"
-            textOverflow="ellipsis"
-            overflow="hidden"
+        <Box flex={1} display="flex" justifyContent="end">
+          <Button
+            variant="contained"
+            color="primary"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              padding: "12px 16px",
+              gap: "8px",
+              width: "182px",
+              height: "44px",
+              background: "#4285F4",
+              borderRadius: "8px",
+              textTransform: "capitalize",
+            }}
+            startIcon={<AddIcon />}
           >
-            Adicionar contato
-          </Typography>
-        </Button>
+            <Typography
+              variant="button"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              style={{
+                textTransform: "capitalize",
+              }}
+            >
+              Adicionar contato
+            </Typography>
+          </Button>
+        </Box>
       </Stack>
 
       <TableContainer component={Paper}>
